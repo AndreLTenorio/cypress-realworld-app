@@ -74,6 +74,39 @@
       "balance": 49474,
       "createdAt": "2023-12-07T04:39:38.383Z",
       "modifiedAt": "2024-03-07T00:07:36.510Z"
+    },
+    {
+      "id": "ceXPPP0FG",
+      "uuid": "b2092aa2-1095-4f6b-97dd-44ab869c2a65",
+      "firstName": "Andrew",
+      "lastName": "Garfiled",
+      "username": "ALTOA",
+      "password": "$2a$10$soCNOA3lNFFoccXdCmnkfOFQ1sxYVtCq8x/fHqyVvXfwiFor1nIU2",
+      "balance": 0,
+      "createdAt": "2024-11-06T23:32:30.149Z",
+      "modifiedAt": "2024-11-06T23:32:30.149Z"
+    },
+    {
+      "id": "_LdVpLYO2",
+      "uuid": "2b2c596e-cec2-4ef2-8a13-ca250faf9139",
+      "firstName": "Andrew",
+      "lastName": "Garfiled",
+      "username": "ALTOA",
+      "password": "$2a$10$2DcT9XEA9TGuD7oJaxD8c.6tv6SvB99Whr6uFAoox6QfLT8QZlnru",
+      "balance": 0,
+      "createdAt": "2024-11-07T01:32:40.332Z",
+      "modifiedAt": "2024-11-07T01:32:40.332Z"
+    },
+    {
+      "id": "pVKiVNQMv",
+      "uuid": "e3efab22-c0eb-444b-bc80-12ad18fd0fdb",
+      "firstName": "Andrew",
+      "lastName": "Garfiled",
+      "username": "ALTOA",
+      "password": "$2a$10$VMEeerEIxabWV92tRvo8N.kAOjJlm/aC3NjWQkYMV6HMmBcVym.PS",
+      "balance": 0,
+      "createdAt": "2024-11-07T01:40:29.771Z",
+      "modifiedAt": "2024-11-07T01:40:29.771Z"
     }
   ],
   "contacts": [
