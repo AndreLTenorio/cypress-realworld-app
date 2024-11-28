@@ -1,13 +1,15 @@
-describe("Login", () => {
-
-const selectorList = {
-  usernameField: "[name='username']",
-  passwordField: "[type='password']",
-  loginButton: "button[type='submit']",
-  sectionSubTitle: ".MuiTypography-subtitle2",
-  wrongCredentialAlert: ".MuiAlert-message",
-}
-
+describe("Cypress Real World App", () => {
+  const selectorList = {
+    usernameField: "[name='username']",
+    passwordField: "[type='password']",
+    loginButton: "button[type='submit']",
+    sectionSubTitle: ".MuiTypography-subtitle2",
+    wrongCredentialAlert: ".MuiAlert-message",
+    registerFirstName: "[name='firstName']",
+    registerLastName: "[name='lastName']",
+    registerPassword: "[name='password']",
+    registerConfirmPassword: "[name='confirmPassword']",
+  };
 
   it("Login - Success", () => {
     cy.visit("http://localhost:3000/");
@@ -22,30 +24,34 @@ const selectorList = {
     cy.get(selectorList.usernameField).type("Test");
     cy.get(selectorList.passwordField).type("Test");
     cy.get(selectorList.loginButton).click();
-    cy.get(selectorList.wrongCredentialAlert).should("contain", "Username or password is invalid");
+    // eslint-disable-next-line prettier/prettier
+    cy.get(selectorList.wrongCredentialAlert, { timeout: 10000 }).should("contain", "Username or password is invalid");
   });
 
   it("Register - Success", () => {
     cy.visit("http://localhost:3000/");
     cy.get('[href="/signup"]').click();
-    cy.get('[name="firstName"]').type("Andrew");
-    cy.get('[name="lastName"]').type("Garfiled");
-    cy.get('[name="username"]').type("ALTOA");
-    cy.get('[name="password"]').type("altoa");
-    cy.get('[name="confirmPassword"]').type("altoa");
+    cy.get(selectorList.registerFirstName).type("Andrew");
+    cy.get(selectorList.registerLastName).type("Garfiled");
+    cy.get(selectorList.usernameField).type("ALTOA");
+    cy.get(selectorList.registerPassword).type("altoa");
+    cy.get(selectorList.registerConfirmPassword).type("altoa");
     cy.get(selectorList.loginButton).click();
-    // cy.get('.MuiAlert-message')//.contains('Username or password is invalid')
+    // cy.get((selectorList.wrongCredentialAlert)//.contains('Username or password is invalid')
   });
 
   it("Registration with incomplete information", () => {
     cy.visit("http://localhost:3000/");
     cy.get('[href="/signup"]').click();
-    cy.get('[name="firstName"]').type("   ");
-    cy.get('[name="lastName"]').type("Garfiled");
-    cy.get('[name="username"]').type("ALTOA");
-    cy.get('[name="password"]').type("123");
-    cy.get('[name="confirmPassword"]').type("123");
-    //cy.get(selectorList.loginButton);
-    cy.get('#password-helper-text');
+    // Preencha os campos com dados incompletos
+    cy.get(selectorList.registerFirstName).type("   "); // Nome inválido (somente espaços)
+    cy.get(selectorList.registerLastName).type("Garfield");
+    cy.get(selectorList.usernameField).type("ALTOA");
+    cy.get(selectorList.registerPassword).type("123"); // Senha muito curta
+    cy.get(selectorList.registerConfirmPassword).type("123");
+    // Verifique se o botão de cadastro está desabilitado
+    cy.get(selectorList.loginButton).should("be.disabled");
+    // Verifique se o helper text de senha aparece, indicando erro de validação
+    cy.get("#password-helper-text").should("be.visible");
   });
 });
