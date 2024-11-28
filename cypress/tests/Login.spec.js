@@ -11,18 +11,42 @@ describe("Cypress Real World App", () => {
     registerConfirmPassword: "[name='confirmPassword']",
   };
 
+  const userData = {
+    userSucess: {
+      username: "Heath93",
+      password: "s3cret",
+    },
+    userFail: {
+      username: "Test",
+      password: "Test",
+    },
+    registerSucess: {
+      firstname: "Andrew",
+      lastname: "Garfield",
+      username: "ALTOA",
+      password: "altoa",
+    },
+    registerImcomplete: {
+      firstname: "   ",
+      lastname: "Garfield",
+      username: "ALTOA",
+      password: "123",
+    },
+  };
+  
+
   it("Login - Success", () => {
     cy.visit("http://localhost:3000/");
-    cy.get(selectorList.usernameField).type("Heath93");
-    cy.get(selectorList.passwordField).type("s3cret");
+    cy.get(selectorList.usernameField).type(userData.userSucess.username);
+    cy.get(selectorList.passwordField).type(userData.userSucess.password);
     cy.get(selectorList.loginButton).click();
     cy.get(selectorList.sectionSubTitle).eq(1).contains("Account Balance");
   });
 
   it("Login - Fail", () => {
     cy.visit("http://localhost:3000/");
-    cy.get(selectorList.usernameField).type("Test");
-    cy.get(selectorList.passwordField).type("Test");
+    cy.get(selectorList.usernameField).type(userData.userFail.username);
+    cy.get(selectorList.passwordField).type(userData.userFail.password);
     cy.get(selectorList.loginButton).click();
     // eslint-disable-next-line prettier/prettier
     cy.get(selectorList.wrongCredentialAlert, { timeout: 10000 }).should("contain", "Username or password is invalid");
@@ -31,11 +55,11 @@ describe("Cypress Real World App", () => {
   it("Register - Success", () => {
     cy.visit("http://localhost:3000/");
     cy.get('[href="/signup"]').click();
-    cy.get(selectorList.registerFirstName).type("Andrew");
-    cy.get(selectorList.registerLastName).type("Garfiled");
-    cy.get(selectorList.usernameField).type("ALTOA");
-    cy.get(selectorList.registerPassword).type("altoa");
-    cy.get(selectorList.registerConfirmPassword).type("altoa");
+    cy.get(selectorList.registerFirstName).type(userData.registerSucess.firstname);
+    cy.get(selectorList.registerLastName).type(userData.registerSucess.lastname);
+    cy.get(selectorList.usernameField).type(userData.registerSucess.username);
+    cy.get(selectorList.registerPassword).type(userData.registerSucess.password);
+    cy.get(selectorList.registerConfirmPassword).type(userData.registerSucess.password);
     cy.get(selectorList.loginButton).click();
     // cy.get((selectorList.wrongCredentialAlert)//.contains('Username or password is invalid')
   });
@@ -44,11 +68,11 @@ describe("Cypress Real World App", () => {
     cy.visit("http://localhost:3000/");
     cy.get('[href="/signup"]').click();
     // Preencha os campos com dados incompletos
-    cy.get(selectorList.registerFirstName).type("   "); // Nome inválido (somente espaços)
-    cy.get(selectorList.registerLastName).type("Garfield");
-    cy.get(selectorList.usernameField).type("ALTOA");
-    cy.get(selectorList.registerPassword).type("123"); // Senha muito curta
-    cy.get(selectorList.registerConfirmPassword).type("123");
+    cy.get(selectorList.registerFirstName).type(userData.registerImcomplete.firstname); // Nome inválido (somente espaços)
+    cy.get(selectorList.registerLastName).type(userData.registerImcomplete.lastname);
+    cy.get(selectorList.usernameField).type(userData.registerImcomplete.username);
+    cy.get(selectorList.registerPassword).type(userData.registerImcomplete.password); // Senha muito curta
+    cy.get(selectorList.registerConfirmPassword).type(userData.registerImcomplete.password);
     // Verifique se o botão de cadastro está desabilitado
     cy.get(selectorList.loginButton).should("be.disabled");
     // Verifique se o helper text de senha aparece, indicando erro de validação

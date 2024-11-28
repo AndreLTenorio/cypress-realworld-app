@@ -85,6 +85,17 @@
       "balance": 0,
       "createdAt": "2024-11-28T20:33:14.482Z",
       "modifiedAt": "2024-11-28T20:33:14.482Z"
+    },
+    {
+      "id": "4IhW5VHQl",
+      "uuid": "50e424fb-107e-4f4e-811f-647240349f34",
+      "firstName": "Andrew",
+      "lastName": "Garfield",
+      "username": "ALTOA",
+      "password": "$2a$10$3WT4oc6wGq/ii5ia/VnxUu0q/p/dCLRX5wlcV2mHRgegovECrwdiG",
+      "balance": 0,
+      "createdAt": "2024-11-28T21:24:56.706Z",
+      "modifiedAt": "2024-11-28T21:24:56.706Z"
     }
   ],
   "contacts": [
